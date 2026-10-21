@@ -1,0 +1,32 @@
+name: Build AutoWarp (Windows VST3 / .dll)
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -B build -G "Visual Studio 17 2022" -A x64
+
+      - name: Build
+        run: cmake --build build --config Release --target AutoWarp_VST3 AutoWarp_Standalone --parallel
+
+      - name: Collect files
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          Copy-Item -Recurse build/AutoWarp_artefacts/Release/VST3/AutoWarp.vst3 dist/AutoWarp.vst3
+          Copy-Item build/AutoWarp_artefacts/Release/Standalone/AutoWarp.exe dist/AutoWarp-Standalone.exe
+          Copy-Item README.md dist/README.md
+          Get-ChildItem -Recurse dist | Select-Object FullName, Length
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AutoWarp-Windows-VST3
+          path: dist
