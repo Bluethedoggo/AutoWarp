@@ -1,0 +1,14 @@
+AutoWarp
+Copyright (c) DogSide Productions & Bluethedoggo. All rights reserved.
+
+AutoWarp is created by DogSide Productions and Bluethedoggo.
+This credit must remain visible in the plugin interface and in the plugin
+metadata (vendor / manufacturer name) in every build and redistribution.
+
+AutoWarp is built with the JUCE framework (https://juce.com). JUCE is licensed
+under AGPLv3 or a commercial JUCE license. If you distribute AutoWarp binaries
+you must comply with the JUCE license that applies to your use (AGPLv3 means
+the complete source code of AutoWarp must be made available to your users, or
+you can buy a JUCE commercial license).
+
+VST is a registered trademark of Steinberg Media Technologies GmbH.
