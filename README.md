@@ -28,6 +28,7 @@ Compile em Windows de um destes jeitos:
 1. Crie um repositório no GitHub e envie esta pasta.
 2. Aba **Actions** → *Build AutoWarp (Windows VST3 / .dll)* → aguarde.
 3. Baixe o artefato **AutoWarp-Windows-VST3** (contém `AutoWarp.vst3` e `AutoWarp-Standalone.exe`).
+4. Antes de enviar a pasta ao GitHub, **apague a pasta `build`**, se existir.
 
 ### Opção B: no seu PC
 1. Instale (grátis): Visual Studio 2022 Community com *Desktop development with C++*, [CMake](https://cmake.org/download/) e Git.
@@ -35,9 +36,23 @@ Compile em Windows de um destes jeitos:
 3. O plugin fica em `build\AutoWarp_artefacts\Release\VST3\AutoWarp.vst3`.
 
 ## Instalar no FL Studio
-1. Copie a pasta **`AutoWarp.vst3`** inteira para `C:\Program Files\Common Files\VST3\`.
-2. FL Studio → **Options → Manage plugins → Find installed plugins**.
-3. Adicione **AutoWarp** pelo Channel Rack (ele aparece como gerador/instrumento).
+
+> **IMPORTANTE:** a pasta **`AutoWarp.vst3`** precisa ficar exatamente em
+> **`C:\Program Files\Common Files\VST3\`**. Fora dessa pasta o FL Studio pode não achar o plugin.
+
+1. Descompacte o zip baixado.
+2. Copie a pasta **`AutoWarp.vst3`** **inteira** (não só o arquivo de dentro, e sem pastas por fora) para:
+   `C:\Program Files\Common Files\VST3\`
+   O resultado final deve ser:
+   `C:\Program Files\Common Files\VST3\AutoWarp.vst3\Contents\x86_64-win\AutoWarp.vst3`
+3. Clique com o botão direito em `AutoWarp.vst3\Contents\x86_64-win\AutoWarp.vst3` → **Propriedades**. Se aparecer **Desbloquear**, marque e clique em OK (o Windows bloqueia arquivos baixados da internet).
+4. FL Studio → **Options → Manage plugins**, marque **Verify plugins** e clique em **Find installed plugins**.
+5. Procure **AutoWarp** em **Plugin database → Installed → Generators** e adicione ao Channel Rack.
+
+### Problemas comuns
+- **Não aparece no FL:** confira o caminho do passo 2, faça o passo 3 (desbloquear) e escaneie de novo (passo 4).
+- **O Windows Defender acusou o `AutoWarp-Standalone.exe`:** é um falso positivo comum em programas novos sem assinatura digital. Você **não precisa** do `.exe` para usar o plugin no FL; pode apagá-lo. Se quiser conferir, envie o arquivo em virustotal.com.
+- **"Não é um .dll":** no Windows, o VST3 é uma DLL com a extensão `.vst3`. O FL Studio só reconhece com essa extensão. O formato VST2 (`.dll` solto) não é suportado.
 
 ## Como usar
 1. **LOAD** (ou arraste um áudio para a janela). O Auto-Warp roda sozinho ao carregar.
